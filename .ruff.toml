@@ -1,0 +1,135 @@
+
+line-length = 140
+src = [
+    "."
+]
+
+[format]
+docstring-code-format = true
+# We want to keep the docstring code line length to 80 characters so that it fits on the screen in the docsite.
+docstring-code-line-length = 80
+
+[lint]
+ignore = [
+    'D100',  # Missing docstring in public module
+    'D102',  # Missing docstring in public method
+    'D104',  # Missing docstring in public package
+    'D105',  # Missing docstring in magic method
+    'D107',  # Missing docstring in __init__
+    'D202',  # No blank lines allowed after function docstring
+    'D205',  # 1 blank line required between summary line and description
+    'E501',  # Line too long
+    'FA102',  # Missing `from __future__ import annotations`, but uses PEP 585 collection
+    'N812',  # Lowercase `functional` imported as non-lowercase `F`
+    'PYI051',  # `Literal[...]` is redundant in a union with `...`
+    'RET504',  # Unnecessary assignment before `return` statement
+    'SIM115',  # Checks for cases where files are opened (e.g., using the builtin open() function) without using a context manager.
+    'SIM300',  # yoda-conditions: Checks for conditions that position a constant on the left-hand side of the comparison operator, rather than the right-hand side.
+]
+# TODO: These are all of the linters that I would like to enable, but we have ~1k warnings to fix before we can do that.
+# select = ['PL', 'PTH', 'TD', 'FIX', 'C90']
+select = [
+    'A',  # flake8-builtins,
+    'ANN002',  # flake8-annotations *args should have a type
+    'ANN003',  # flake8-annotations **kwargs should have a type
+    'ASYNC',  # flake8-async
+    'B',  # Bugbear finding likely bugs and design problems in your program
+    'C4',  # flake8-comprehensions
+    'D',  # pydocstyle
+    'D200',  # One-line docstring should fit on one line with quotes
+    'D201',  # No blank lines allowed before function docstring
+    'D204',  # 1 blank line required after class docstring
+    'D206',  # Docstring should be indented with spaces, not tabs
+    'D207',  # Docstring is under-indented
+    'D208',  # Docstring is over-indented
+    'D209',  # Multi-line docstring closing quotes should be on a separate line
+    'D210',  # No whitespaces allowed surrounding docstring text
+    'D211',  # No blank lines allowed before class docstring
+    'D212',  # Multi-line docstring summary should start at the first line
+    'D300',  # Use """triple double quotes""" for docstrings
+    'D301',  # Use r""" if any backslashes in a docstring
+    'D400',  # First line should end with a period
+    'D401',  # First line should be in imperative mood
+    'D402',  # First line should not be the function's signature
+    'D403',  # First word of the first line should be properly capitalized
+    'D404',  # First word of the docstring should not be This
+    'D405',  # Section name should be properly capitalized
+    'D406',  # Section name should end with a newline
+    'D410',  # Missing blank line after section
+    'D411',  # Missing blank line before section
+    'D412',  # No blank lines allowed between a section header and its content
+    'D414',  # Section has no content
+    'D415',  # First line should end with a period, question mark, or exclamation point
+    'D416',  # Section name should end with a colon
+    'D417',  # Missing argument descriptions in the docstring
+    'D418',  # Function/ Method decorated with @overload shouldn’t contain a docstring
+    'D419',  # Docstring is empty
+    'E',  # pycodestyle Error
+    'ERA',  # eradicate
+    'F',  # Pyflakes
+    'F401',  # Unused Imports
+    'FA',  # Future Annotations
+    'I',  # Isort
+    'N',  # pep8-naming
+    'NPY',  # NumPy Rules
+    'PERF',  # performance
+    'PYI',  # flake8-pyi
+    'RET',  # flake8-return
+    'RUF',  # Ruff
+    'SIM',  # flake8-simplify
+    'T20',  # flake8-print
+    'TID',  # Pyflake Tidy Import (for banning relative imports)
+    'UP',  # Pyupgrade macros
+    'W',  # pycodestyle warning
+]
+
+[lint.flake8-builtins]
+builtins-ignorelist = ["input"]
+
+[lint.flake8-tidy-imports]
+ban-relative-imports = 'all'
+
+[lint.isort]
+combine-as-imports = true
+known-first-party = [
+    "stainedglass_core",
+    "tests",
+]
+split-on-trailing-comma = false
+
+[lint.pep8-naming]
+ignore-names = [
+    "B",
+    "D_x_z",
+    "D_xz",
+    "N",
+    "mTm",
+    "mTn",
+    "nTn",
+    "setUp",
+    "setUpClass",
+    "tearDown",
+    "tearDownClass",
+]
+
+[lint.per-file-ignores]
+"__init__.py" = [
+    "F401",  # Import imported into __init__ by unused; consider adding to `__all__` or using a redundant alias
+    "F403",  # `from foo import *` used; unable to detect undefined names
+]
+"docs/**/*.ipynb" = [
+    "D101",  # Missing docstring in public class
+    "ERA001",  # Found commented-out code
+    "F404",  # Future import(s) name after other statements
+    "T201",  # `print` statement found
+]
+"scripts/*.py" = [
+    "T201",  # `print` found
+]
+"tests/*.py" = [
+    "D101",  # Missing docstring in public class
+    "D106",  # Missing docstring in public nested class
+]
+
+[lint.pydocstyle]
+convention = "google"
